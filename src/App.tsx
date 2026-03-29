@@ -7,6 +7,7 @@ import { Toaster } from 'react-hot-toast';
 import { AppProvider, useApp } from './context/AppContext';
 import BottomNav from './components/ui/BottomNav';
 import OfflineIndicator from './components/ui/OfflineIndicator';
+import PageTransition from './components/ui/PageTransition';
 
 // Pages
 import Login from './pages/Login';
@@ -23,6 +24,7 @@ import BodyMap from './pages/BodyMap';
 import TriageResults from './pages/TriageResults';
 import SeverityCheck from './pages/SeverityCheck';
 import ImageScan from './pages/ImageScan';
+
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated } = useApp();
@@ -46,23 +48,23 @@ function AppRoutes() {
     >
       <OfflineIndicator />
       <AnimatePresence mode="wait">
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-          <Route path="/intake/voice" element={<ProtectedRoute><IntakeFlow /></ProtectedRoute>} />
-          <Route path="/intake/body-map" element={<ProtectedRoute><BodyMap /></ProtectedRoute>} />
-          <Route path="/intake/scan" element={<ProtectedRoute><ImageScan /></ProtectedRoute>} />
-          <Route path="/intake" element={<ProtectedRoute><IntakeFlow /></ProtectedRoute>} />
-          <Route path="/emergency" element={<ProtectedRoute><EmergencyAlert /></ProtectedRoute>} />
-          <Route path="/triage" element={<TriageResults />} />
-          <Route path="/triage/:id" element={<ProtectedRoute><TriageResultPage /></ProtectedRoute>} />
-          <Route path="/vision" element={<ProtectedRoute><VisionModule /></ProtectedRoute>} />
-          <Route path="/epi" element={<ProtectedRoute><EpiDashboard /></ProtectedRoute>} />
-          <Route path="/history" element={<ProtectedRoute><HistoryPage /></ProtectedRoute>} />
-          <Route path="/consult" element={<ProtectedRoute><ConsultRoom /></ProtectedRoute>} />
-          <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+        <Routes location={useLocation()} key={useLocation().pathname}>
+          <Route path="/login" element={<PageTransition><Login /></PageTransition>} />
+          <Route path="/" element={<ProtectedRoute><PageTransition><Dashboard /></PageTransition></ProtectedRoute>} />
+          <Route path="/intake/voice" element={<ProtectedRoute><PageTransition><IntakeFlow /></PageTransition></ProtectedRoute>} />
+          <Route path="/intake/body-map" element={<ProtectedRoute><PageTransition><BodyMap /></PageTransition></ProtectedRoute>} />
+          <Route path="/intake/scan" element={<ProtectedRoute><PageTransition><ImageScan /></PageTransition></ProtectedRoute>} />
+          <Route path="/intake" element={<ProtectedRoute><PageTransition><IntakeFlow /></PageTransition></ProtectedRoute>} />
+          <Route path="/emergency" element={<ProtectedRoute><PageTransition><EmergencyAlert /></PageTransition></ProtectedRoute>} />
+          <Route path="/triage" element={<PageTransition><TriageResults /></PageTransition>} />
+          <Route path="/triage/:id" element={<ProtectedRoute><PageTransition><TriageResultPage /></PageTransition></ProtectedRoute>} />
+          <Route path="/vision" element={<ProtectedRoute><PageTransition><VisionModule /></PageTransition></ProtectedRoute>} />
+          <Route path="/epi" element={<ProtectedRoute><PageTransition><EpiDashboard /></PageTransition></ProtectedRoute>} />
+          <Route path="/history" element={<ProtectedRoute><PageTransition><HistoryPage /></PageTransition></ProtectedRoute>} />
+          <Route path="/consult" element={<ProtectedRoute><PageTransition><ConsultRoom /></PageTransition></ProtectedRoute>} />
+          <Route path="/profile" element={<ProtectedRoute><PageTransition><Profile /></PageTransition></ProtectedRoute>} />
           <Route path="*" element={<Navigate to="/" replace />} />
-          <Route path="/intake/severity" element={<SeverityCheck />} />
+          <Route path="/intake/severity" element={<PageTransition><SeverityCheck /></PageTransition>} />
         </Routes>
       </AnimatePresence>
       <BottomNav />
