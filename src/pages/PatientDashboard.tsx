@@ -77,9 +77,8 @@ export default function PatientDashboard() {
           </div>
           <div className="flex flex-col items-end gap-2">
             <LanguageSelector compact />
-            <div className={`flex items-center gap-1 text-[10px] font-medium px-2 py-0.5 rounded-full ${
-              isOnline ? 'bg-vaida-teal/20 text-vaida-teal-mid' : 'bg-urgency-amber/20 text-urgency-amber'
-            }`}>
+            <div className={`flex items-center gap-1 text-[10px] font-medium px-2 py-0.5 rounded-full ${isOnline ? 'bg-vaida-teal/20 text-vaida-teal-mid' : 'bg-urgency-amber/20 text-urgency-amber'
+              }`}>
               {isOnline ? <Wifi size={10} /> : <WifiOff size={10} />}
               {isOnline ? 'Online' : 'Offline'}
             </div>
@@ -149,10 +148,9 @@ export default function PatientDashboard() {
               className="bg-white rounded-2xl p-4 border border-vaida-bg2 flex items-center gap-3 cursor-pointer hover:shadow-sm transition-shadow"
               onClick={() => navigate('/triage/' + session.id)}
             >
-              <div className={`w-3 h-3 rounded-full flex-shrink-0 ${
-                session.urgency === 'GREEN' ? 'bg-urgency-green' :
+              <div className={`w-3 h-3 rounded-full flex-shrink-0 ${session.urgency === 'GREEN' ? 'bg-urgency-green' :
                 session.urgency === 'AMBER' ? 'bg-urgency-amber' : 'bg-urgency-red'
-              }`} />
+                }`} />
               <div className="flex-1 min-w-0">
                 <p className="font-semibold text-sm truncate">{session.complaint}</p>
                 <p className="text-xs text-vaida-text-hint">{session.date}</p>

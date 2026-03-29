@@ -22,6 +22,7 @@ import EmergencyAlert from './pages/EmergencyAlert';
 import BodyMap from './pages/BodyMap';
 import TriageResults from './pages/TriageResults';
 import SeverityCheck from './pages/SeverityCheck';
+import ImageScan from './pages/ImageScan';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated } = useApp();
@@ -50,7 +51,7 @@ function AppRoutes() {
           <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path="/intake/voice" element={<ProtectedRoute><IntakeFlow /></ProtectedRoute>} />
           <Route path="/intake/body-map" element={<ProtectedRoute><BodyMap /></ProtectedRoute>} />
-          <Route path="/intake/scan" element={<ProtectedRoute><VisionModule /></ProtectedRoute>} />
+          <Route path="/intake/scan" element={<ProtectedRoute><ImageScan /></ProtectedRoute>} />
           <Route path="/intake" element={<ProtectedRoute><IntakeFlow /></ProtectedRoute>} />
           <Route path="/emergency" element={<ProtectedRoute><EmergencyAlert /></ProtectedRoute>} />
           <Route path="/triage" element={<TriageResults />} />
